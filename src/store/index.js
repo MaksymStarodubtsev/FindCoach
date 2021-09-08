@@ -44,6 +44,21 @@ const store = createStore({
     },
     toSortCoaches (context, filtersForCoachesList) {
       context.commit('setFiltersInState', filtersForCoachesList)
+    },
+    setRequests (context, requestsData) {
+      fetch('https://vue-http-demo-763e4-default-rtdb.europe-west1.firebasedatabase.app/FindCoaches/Request.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: 1,
+          coachName: requestsData.name,
+          email: requestsData.email,
+          desc: requestsData.desc
+        })
+      })
+      console.log('send')
     }
   }
 })

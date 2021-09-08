@@ -13,12 +13,12 @@
       class="demo-ruleForm"
     >
       <el-form-item
-        prop="name"
+        prop="email"
         style="margin-left: -120px;"
         class="flex flex-col content-start text-left"
       >
           <span class="font-bold">Your E-Mail</span>
-          <el-input v-model='ruleForm.name' pattern=".+@globex\.com"></el-input>
+          <el-input v-model='ruleForm.email' type="email"></el-input>
       </el-form-item>
       <el-form-item
         prop="desc"
@@ -39,25 +39,27 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   data () {
     return {
       ruleForm: {
-        name: '',
+        name: this.coachNameToContact,
+        email: '',
         desc: ''
       },
       rules: {
-        name: [
+        email: [
           {
             required: true,
-            message: 'Please input Your E-Mail',
+            message: 'Please input email address',
             trigger: 'blur'
           },
           {
-            min: 6,
-            max: 20,
-            message: 'Email should contain min. 6 letter',
-            trigger: 'blur'
+            type: 'email',
+            message: 'Please input correct email address',
+            trigger: ['blur', 'change']
           }
         ],
         desc: [
@@ -76,12 +78,18 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['setRequests']),
     resetForm (formName) {
       this.$refs[formName].resetFields()
     },
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          this.$store.dispatch('setRequests', {
+            name: this.coachNameToContact,
+            email: this.ruleForm.email,
+            desc: this.ruleForm.desc
+          })
           return alert('submit!')
         }
         console.log('error submit!!')
