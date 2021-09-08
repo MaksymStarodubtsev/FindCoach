@@ -90,7 +90,8 @@ export default {
             email: this.ruleForm.email,
             desc: this.ruleForm.desc
           })
-          return alert('submit!')
+          this.ruleForm = ''
+          this.ruleForm.desc = ''
         }
         console.log('error submit!!')
         return false

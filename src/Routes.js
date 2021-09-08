@@ -2,6 +2,7 @@ import { createWebHistory, createRouter } from 'vue-router'
 import coaches from './components/CoachesList.vue'
 
 import FormCoach from './components/ContactWithCoach/FormCoach.vue'
+import RequestsFromStudent from './components/RequestsFromStudent.vue'
 
 const routes = [
   {
@@ -11,6 +12,15 @@ const routes = [
     children: [
       { name: 'FormCoach', path: ':coacheId', component: FormCoach }
     ]
+  },
+  {
+    path: '/request',
+    name: 'request',
+    component: RequestsFromStudent
+  },
+  {
+    path: '/:notFound(.*)',
+    redirect: '/coaches'
   }
 ]
 
