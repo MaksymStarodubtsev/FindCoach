@@ -66,7 +66,7 @@ const store = createStore({
         })
     },
     getRequests (context) {
-      fetch('https://vue-http-demo-763e4-default-rtdb.europe-west1.firebasedatabase.app/FindCoaches/Request.json')
+      fetch('https://vue-http-demo-763e4-default-rtdb.europe-west1.firebasedatabase.app/Request.json')
         .then((response) => response.json())
         .then((data) => {
           context.commit('setInRequests', data)
@@ -82,7 +82,7 @@ const store = createStore({
       context.commit('setFiltersInState', filtersForCoachesList)
     },
     setRequests (context, requestsData) {
-      fetch('https://vue-http-demo-763e4-default-rtdb.europe-west1.firebasedatabase.app/FindCoaches/Request.json', {
+      fetch('https://vue-http-demo-763e4-default-rtdb.europe-west1.firebasedatabase.app/Request.json', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
