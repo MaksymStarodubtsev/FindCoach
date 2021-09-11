@@ -1,6 +1,6 @@
 <template>
-  <main class='flex h-5/6 justify-center'>
-    <div class='w-2/4'>
+  <main class='flex h-5/6 justify-center container'>
+    <div class='w-3/4'>
       <CardTemplate>
         <CardHeaderTeamplate header='Find your Coach' />
       </CardTemplate>
@@ -50,5 +50,14 @@ export default {
 <style scoped>
 .Main__button {
   left: 0px;
+}
+.container {
+  margin: 0 auto;
+  padding: 0 140px;
+}
+@media (max-width: 700px) {
+  .container {
+    padding: 0px;
+  }
 }
 </style>

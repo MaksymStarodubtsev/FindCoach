@@ -7,7 +7,7 @@
           <h5 class="text-xl">{{ paid }}/hour</h5>
           <div class="flex gap-4">
             <span
-              class="rounded-full py-3 px-6 bg-green-300"
+              class="rounded-full py-3 px-6 bg-green-300 skill__cells"
               v-for="skill in skills"
               :key="skill"
             >
@@ -16,13 +16,21 @@
           </div>
         </div>
         <div class="flex flex-row justify-end gap-9">
-          <button
-            class="rounded-full py-3 px-6 bg-yellow-300"
+          <el-button
+            type="warning"
+            class="rounded-full button"
+            plain
             @click="coachDetails(id)"
           >
             Contact
-          </button>
-          <button class="rounded-full py-3 px-6 bg-pink-300">View Details</button>
+          </el-button>
+          <el-button
+            type="danger"
+            plain
+            class="rounded-full button"
+          >
+            Details
+          </el-button>
         </div>
       </div>
     </slot>
@@ -40,3 +48,29 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .skill__cells {
+    transition: transform ease-in-out 0.3s;
+  }
+
+  .skill__cells:hover {
+    transform: scale(1.1);
+  }
+
+  @media (max-width: 499px) {
+    .button {
+      font-size: 12px;
+      width: 80px;
+    }
+
+    .skill__cells {
+      font-size: 8px;
+      width: 60px;
+    }
+
+    .py-3 {
+      padding: 5px 2px;
+    }
+  }
+</style>

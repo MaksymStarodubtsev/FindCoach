@@ -1,6 +1,10 @@
 import { createStore } from 'vuex'
+import Auth from './modules/auth/index'
 
 const store = createStore({
+  modules: {
+    auth: Auth
+  },
   state () {
     return {
       coaches: [],
