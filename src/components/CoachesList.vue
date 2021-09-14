@@ -6,7 +6,7 @@
       </CardTemplate>
       <CardTemplate header='Coach'>
         <div class='flex justify-start mb-12'>
-          <el-button round class='Main__button'>
+          <el-button round class='Main__button' @click="refreshCoachesList">
             Refresh
           </el-button>
         </div>
@@ -42,7 +42,7 @@ export default {
     ...mapGetters({ coachList: 'coachesList' })
   },
   methods: {
-    ...mapActions(['getCoaches'])
+    ...mapActions(['refreshCoachesList'])
   }
 }
 </script>

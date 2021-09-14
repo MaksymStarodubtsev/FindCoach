@@ -40,19 +40,8 @@ const store = createStore({
     setFiltersInState (state, skillsFilters) {
       state.filterForSkills = skillsFilters
     },
-    addNewCoach (state) {
-      fetch('https://vue-http-demo-763e4-default-rtdb.europe-west1.firebasedatabase.app/FindCoaches/Coaches.json', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          id: 3,
-          name: 'Mark Berg',
-          paid: 30,
-          skills: ['Front-end', 'Back-end', 'career support']
-        })
-      })
+    refreshFiltersOfCoaches (state) {
+      state.filterForSkills = []
     }
   },
   actions: {
@@ -98,6 +87,24 @@ const store = createStore({
           desc: requestsData.desc
         })
       })
+    },
+    addNewCoach (context) {
+      fetch('https://vue-http-demo-763e4-default-rtdb.europe-west1.firebasedatabase.app/FindCoaches/Coaches.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: 3,
+          name: 'Mark Berg',
+          paid: 30,
+          skills: ['Front-end', 'Back-end', 'career support']
+        })
+      })
+    },
+    refreshCoachesList (context) {
+      context.commit('refreshFiltersOfCoaches')
+      this.getCoaches()
     }
   }
 })

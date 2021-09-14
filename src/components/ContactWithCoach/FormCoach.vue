@@ -18,7 +18,7 @@
         class="flex flex-col content-start text-left"
       >
           <span class="font-bold">Your E-Mail</span>
-          <el-input type="email"></el-input>
+          <el-input v-model='ruleForm.email' type="email"></el-input>
       </el-form-item>
       <el-form-item
         prop="desc"
@@ -26,7 +26,7 @@
         class="flex flex-col content-start text-left ml-1"
       >
         <span class="font-bold">Message</span>
-        <el-input type="textarea" rows="4"  ></el-input>
+        <el-input type="textarea" rows="4" v-model="ruleForm.desc"></el-input>
       </el-form-item>
 
       <el-form-item style="margin-left: -120px;">
