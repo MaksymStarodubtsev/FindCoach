@@ -25,12 +25,33 @@
             Contact
           </el-button>
           <el-button
-            type="danger"
-            plain
+            type="primary"
             class="rounded-full button"
+            plain
+            @click="centerDialogVisible = true"
           >
             Details
           </el-button>
+
+            <el-dialog title="Information about Coach" v-model="centerDialogVisible" width="30%" center>
+              <ul>
+                <li>Coach name - {{ name }}</li>
+                <li>Coach paid per/hour - {{paid}}$</li>
+                skills:
+                <ol class="skill_details-list">
+                  <li v-for="skill in skills" :key="skill">{{skill}} </li>
+                </ol>
+              </ul>
+              <template #footer>
+                <span class="dialog-footer">
+                  <el-button @click="centerDialogVisible = false">Cancel</el-button>
+                  <el-button type="primary" @click="coachDetails(id), centerDialogVisible = false"
+                    >Contact</el-button
+                  >
+                </span>
+              </template>
+            </el-dialog>
+
         </div>
       </div>
     </slot>
@@ -39,6 +60,11 @@
 
 <script>
 export default {
+  data () {
+    return {
+      centerDialogVisible: false
+    }
+  },
   props: ['id', 'name', 'paid', 'skills'],
   methods: {
     coachDetails (coachId) {
@@ -54,7 +80,13 @@ export default {
     transition: transform ease-in-out 0.3s;
   }
 
+  .skill_details-list {
+    list-style-type: decimal;
+    margin-left: 8%;
+  }
+
   .skill__cells:hover {
+    cursor: pointer;
     transform: scale(1.1);
   }
 
